@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Energy Create – Screen</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #orb {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: magenta;
+      box-shadow: 0 0 40px magenta;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div id="orb"></div>
+
+  <script>
+    // Open a WebSocket connection (phone will connect to the same server)
+    const socket = new WebSocket("wss://socketsbay.com/wss/v2/1/demo/");
+
+    const orb = document.getElementById("orb");
+
+    socket.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.x && data.y) {
+          orb.style.transform = `translate(${data.x}px, ${data.y}px)`;
+        }
+      } catch (e) {
+        console.log("Invalid data:", event.data);
+      }
+    };
+  </script>
+</body>
+</html>
