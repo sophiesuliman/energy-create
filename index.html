@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Energy Create – Screen</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    #orb {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: magenta;
+      box-shadow: 0 0 40px magenta;
+    }
+    #qrcode {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="orb"></div>
+  <div id="qrcode"></div>
+
+  <!-- QRCode library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    const link = "https://sophiesuliman.github.io/energy-create/";
+    new QRCode(document.getElementById("qrcode"), {
+      text: link,
+      width: 128,
+      height: 128
+    });
+  </script>
+</body>
+</html>
